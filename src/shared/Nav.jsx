@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthenticationContext } from "../providers/ContextComponent";
-
+import mony from '../../src/assets/money.png'
 const Nav = () => {
   const { user, logOut } = useContext(AuthenticationContext);
   console.log(user, "inside the navbar");
@@ -22,8 +22,8 @@ const Nav = () => {
     };
   }, []);
   return (
-    <div>
-      <nav className="flex items-center justify-between bg-[#393E46] px-4 py-2 text-white mb-8">
+    <div className="fixed z-10 w-full bg-opacity-80">
+      <nav className="flex items-center justify-between bg-[#393E46] px-4 py-2 text-white">
         <div className="scale-100 cursor-pointer rounded-2xl px-3 py-2 text-xl font-semibold text-white transition-all duration-200 hover:scale-110 flex justify-center items-center gap-4">
          {
           user &&  <img
@@ -46,7 +46,11 @@ const Nav = () => {
             </NavLink>
             <NavLink to="/login">
               <li className="group flex  cursor-pointer flex-col">
-                Available Coin
+                <div className="flex justify-center items-center ">
+                <img className="w-12" src={mony} alt="" />
+               <h1 className="font-bold text-2xl"> 10</h1>
+                </div>
+               
                 <span className="mt-[2px] h-[3px]  w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
               </li>
             </NavLink>
