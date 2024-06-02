@@ -11,15 +11,15 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState();
   const [success, setSuccess] = useState();
-  const [googleLogin, setGoogleLogin] = useState();
-  const [googleError, setGoogleError] = useState();
+  // const [googleLogin, setGoogleLogin] = useState();
+  // const [googleError, setGoogleError] = useState();
   // loginWithGoogle
-  if (googleLogin) {
-    toast.success("Successfully login with google");
-  }
-  if (googleError) {
-    toast.error(error);
-  }
+  // if (googleLogin) {
+  //   toast.success("Successfully login with google");
+  // }
+  // if (googleError) {
+  //   toast.error(error);
+  // }
 
   // Login
   if (error) {
@@ -50,11 +50,10 @@ const Login = () => {
     loginWithGoogle()
       .then((result) => {
         console.log(result);
-        setGoogleLogin("success");
+        toast.success("Successfully login with google");
       })
       .catch((error) => {
-        setGoogleError(error.message);
-        console.log(error);
+        toast.error(error);        
       });
   };
 

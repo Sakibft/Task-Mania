@@ -9,7 +9,7 @@ import {
 import { createContext, useEffect, useState } from "react";
 // import auth from "../firebase/firebase.config";
 import { GoogleAuthProvider } from "firebase/auth";
-import axios from "axios";
+// import axios from "axios";
 import auth from "../firebase/fConfig";
 
 const Provider = new GoogleAuthProvider();

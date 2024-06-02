@@ -3,6 +3,7 @@ import { useContext } from "react";
 import {  Link, useNavigate } from "react-router-dom";
  
 import { AuthenticationContext } from "../providers/ContextComponent";
+import { fromJSON } from "postcss";
 
 const Register = () => {
   // const axiosPublic = useAxiosPublic();
@@ -16,8 +17,8 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     const photo = form.photo.value;
- 
-    console.log(name,email,password,photo ,'hahah');
+     const category = form.category.value;
+    console.log(name,email,password,photo ,category,'hahah');
     createUser(email,password, photo)
     .then(data => {
       AddNameAndPhoto(name,photo)
@@ -92,6 +93,15 @@ const Register = () => {
               placeholder="photo"
               className="w-full px-4 py-3 rounded-md border border-indigo-300 focus:outline-none focus:ring  "
             />
+               <select
+                name="category"
+                className="p-4 rounded-lg border-l border-r border-primary shadow-blue-200 shadow-lg 
+              focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300"
+              >
+               <option value="Technology">Select a role</option>
+                <option value="worker">Worker</option>
+                <option value="taskCreator">TaskCreator</option>
+               </select>
             <div className="flex justify-end text-xs ">
               <a href="#" className="hover:underline">
                 Forgot Password?
