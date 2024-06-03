@@ -14,7 +14,7 @@ const Feature = () => {
 
       {/* container 1  */}
       <div className="flex justify-center items-center ">
-        <div className="grid grid-cols-3  gap-8 ">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8 ">
           {/*  */}
           <div className="card w-80 mb-4 bg-base-200 border shadow-xl">
             <div className="flex  p-4 justify-between  items-center  gap-x-4">
@@ -49,7 +49,7 @@ const Feature = () => {
       </div>
       {/* container 2 */}
       <div className="flex justify-center items-center ">
-        <div className="grid grid-cols-3  gap-8 ">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2  gap-8 ">
           {/* task */}
           <div className="card w-80 mb-4 bg-base-200 border shadow-xl">
             <div className="flex  p-4 justify-between  items-center  gap-x-4 ">
@@ -89,7 +89,7 @@ const Feature = () => {
       </div>
       {/* Container 3 */}
       <div className="flex justify-center items-center ">
-        <div className="grid grid-cols-3  gap-8 ">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2  gap-8 ">
           {/* support*/}
           <div className="card w-80 mb-4 bg-base-200 border shadow-xl">
             <div className="flex  p-4 justify-between items-center gap-x-4 ">
