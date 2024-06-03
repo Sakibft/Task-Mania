@@ -62,7 +62,7 @@ const Login = () => {
       <div
         data-aos="fade-up"
         data-aos-duration="1000"
-        className="container mx-auto flex  h-[700px] items-center justify-center mb-10 mt-4 border-2 hover:border-primary duration-2000   rounded-2xl shadow-xl"
+        className="container mx-auto flex  h-[700px] items-center justify-center mb-10 mt-4 border-2 hover:border-primary duration-2000   rounded-2xl shadow-xl "
       >
         <div className=" w-full overflow-hidden rounded-xl   flex justify-center items-center   lg:h-[80%] ">
           {/* input side  */}

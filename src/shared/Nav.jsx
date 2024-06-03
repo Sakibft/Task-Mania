@@ -22,7 +22,7 @@ const Nav = () => {
     };
   }, []);
   return (
-    <div className="fixed z-10 w-full bg-opacity-80">
+    <div className=" w-full bg-opacity-80">
       <nav className="flex items-center justify-between bg-[#393E46] px-4 py-2 text-white">
         <div className="scale-100 cursor-pointer rounded-2xl px-3 py-2 text-xl font-semibold text-white transition-all duration-200 hover:scale-110 flex justify-center items-center gap-4">
          {
