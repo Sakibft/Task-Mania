@@ -1,18 +1,13 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import mony from '../../src/assets/money.png'
-import useAxionPublic from "../hooks/useAxionPublic";
+import mony from "../../src/assets/money.png";
 import { AuthenticationContext } from "../providers/ContextComponent";
- 
+import useUsersData from "../hooks/useUsersData";
 const Nav = () => {
-const axiosPublic = useAxionPublic();
+  const userData = useUsersData();
   const { user, logOut } = useContext(AuthenticationContext);
-  console.log(user, "inside the navbar");
   const [dropDownState, setDropDownState] = useState(false);
-  const [coin,setCoin]=useState();
   const dropDownMenuRef = useRef();
-const currentUser = user?.email;
-console.log(currentUser);
   useEffect(() => {
     const closeDropDown = (e) => {
       if (!dropDownMenuRef?.current?.contains(e?.target)) {
@@ -24,26 +19,17 @@ console.log(currentUser);
       document.removeEventListener("mousedown", closeDropDown);
     };
   }, []);
-  // data get for navbar coin show 
-axiosPublic.get(`/user/${currentUser}`)
-.then(res =>{
-setCoin(res.data.coin)
-  console.log(res.data,'nav e data ');
-})
-.catch(error => {
-  console.log(error);
-})
   return (
     <div className=" w-full bg-opacity-80">
       <nav className="flex items-center justify-between bg-[#393E46] px-4 py-2 text-white">
         <div className="scale-100 cursor-pointer rounded-2xl px-3 py-2 text-xl font-semibold text-white transition-all duration-200 hover:scale-110 flex justify-center items-center gap-4">
-         {
-          user &&  <img
-          className="w-12 rounded-full bg-slate-500 object-cover  duration-500"
-          src={user?.photoURL}
-          alt="user image "
-        />
-         }
+          {user && (
+            <img
+              className="w-12 rounded-full bg-slate-500 object-cover  duration-500"
+              src={user?.photoURL}
+              alt="user image "
+            />
+          )}
           <Link to="/">
             <h2>TaskMania</h2>
           </Link>
@@ -59,10 +45,10 @@ setCoin(res.data.coin)
             <NavLink to="/login">
               <li className="group flex  cursor-pointer flex-col">
                 <div className="flex justify-center items-center ">
-                <img className="w-12" src={mony} alt="" />
-               <h1 className="font-bold text-2xl">{coin} </h1>
+                  <img className="w-12" src={mony} alt="" />
+                  <h1 className="font-bold text-2xl">{userData?.coin} </h1>
                 </div>
-               
+
                 <span className="mt-[2px] h-[3px]  w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
               </li>
             </NavLink>
@@ -72,7 +58,6 @@ setCoin(res.data.coin)
               className="group flex  cursor-pointer flex-col border rounded-xl p-1"
             >
               Logout
-              
             </li>
           </ul>
         ) : (
@@ -98,7 +83,6 @@ setCoin(res.data.coin)
             </NavLink>
           </ul>
         )}
-
         <div
           ref={dropDownMenuRef}
           onClick={() => setDropDownState(!dropDownState)}

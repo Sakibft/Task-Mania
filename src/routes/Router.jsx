@@ -5,6 +5,7 @@ import Register from "../pages/Register";
 import Home from "../pages/Home";
 import Error from "../pages/Error";
 import Dashboard from "../pages/Dashboard/Dashboard";
+import AddTask from "../pages/TaskCreator/AddTask";
 
 const router = createBrowserRouter([
   {
@@ -28,7 +29,14 @@ const router = createBrowserRouter([
   },
   {
     path:'dashBoard',
-    element:<Dashboard></Dashboard>
+    element:<Dashboard></Dashboard>,
+    errorElement:<Error></Error>,
+    children:[
+{
+  path:'taskCreatorAddNewTasks',
+  element:<AddTask></AddTask>
+}
+    ]
     
   }
 ]);

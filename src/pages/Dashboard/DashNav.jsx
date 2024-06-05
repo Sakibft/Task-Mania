@@ -1,34 +1,18 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext} from "react";
 import { AuthenticationContext } from "../../providers/ContextComponent";
-import useAxionPublic from "../../hooks/useAxionPublic";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+import useUsersData from "../../hooks/useUsersData";
 const DashNav = () => {
   const { user } = useContext(AuthenticationContext);
-  const axiosPublic = useAxionPublic();
-  const [userData, setUserData] = useState();
-  const currentUser = user?.email;
-  useEffect(() => {
-    if (currentUser) {
-      axiosPublic
-        .get(`/user/${currentUser}`)
-        .then((res) => {
-          setUserData(res.data);
-          console.log(res.data, "nav e data ");
-        })
-        .catch((error) => {
-          console.error("Error fetching user data:", error);
-        });
-    }
-  }, [currentUser]);
-
+  const userData = useUsersData();
   const coin = userData?.coin;
   const category = userData?.category;
-
   return (
     <div className="container mx-auto">
-      <div className="navbar bg-base-100 ">
+      {/* nav */}
+      <div className="navbar bg-base-100 border">
         <div className="navbar-start">
-          <Link to='/' className="btn btn-ghost text-xl">Logo</Link>
+          <Link className="btn btn-ghost text-xl">Logo</Link>
         </div>
         {/* <div className="navbar-center hidden md"></div> */}
 
@@ -80,67 +64,7 @@ const DashNav = () => {
         </div>
       </div>
 
-      {/* dashboard */}
-      <div className="w-64 min-h-[calc(100vh-290px)]  bg-green-100">
-        <ul className="menu">
-          {/* worker */}
-          {userData?.category === "worker" && (
-            <>
-              <li>
-                <NavLink to="/dashboard/workerHome">Home</NavLink>
-              </li>
-              <li>
-                <NavLink to="/dashboard/workerTasklist">TaskList</NavLink>
-              </li>
-              <li>
-                <NavLink to="/dashboard/workerSubmission">My Submissions</NavLink>
-              </li>
-              <li>
-                <NavLink to="/dashboard/workerWithdrawals">Withdrawals</NavLink>
-              </li>
-            </>
-          )}
-          {/* taskCreator */}
-
-        {
-          userData?.category === "taskCreator" && (
-            <>
-             <li>
-                <NavLink to="/dashboard/taskCreatorHome">Home</NavLink>
-              </li>
-             <li>
-                <NavLink to="/dashboard/taskCreatorAddNewTasks">Add new Tasks</NavLink>
-              </li>
-             <li>
-                <NavLink to="/dashboard/taskCreatorMyTasks">My Tasks</NavLink>
-              </li>
-             <li>
-                <NavLink to="/dashboard/taskCreatorPurchaseCoin">Purchase Coin</NavLink>
-              </li>
-             <li>
-                <NavLink to="/dashboard/taskCreatorPaymentHistory">Payment history</NavLink>
-              </li>
-            </>
-          )
-        }
-        {/* Admin */}
-         {
-            userData?.category === "admin" && (
-              <>
-               <li>
-                <NavLink to="/dashboard/adminHome">Home</NavLink>
-              </li>
-               <li>
-                <NavLink to="/dashboard/adminMangeUsers">Mange Users</NavLink>
-              </li>
-               <li>
-                <NavLink to="/dashboard/adminManageTask">Manage Task</NavLink>
-              </li>
-              </>
-            )
-          }
-        </ul>
-      </div>
+     
     </div>
   );
 };

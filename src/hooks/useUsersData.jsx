@@ -1,23 +1,28 @@
  
-// import useAxionPublic from './useAxionPublic';
-// import { AuthenticationContext } from '../providers/ContextComponent';
-// import { useContext, useState } from 'react';
+import useAxionPublic from './useAxionPublic';
+import { AuthenticationContext } from '../providers/ContextComponent';
+import { useContext, useEffect, useState } from 'react';
 
-// const useUsersData = () => {
-//   const [userData,setUserData] = useState();
-//   const {user} = useContext(AuthenticationContext)
-//   const currentUser = user.email;
-//  const axiosPublic = useAxionPublic();
-//     // data get for navbar coin show 
-//  axiosPublic.get(`/user/${currentUser}`)
-// .then(res =>{
-//   setUserData(res.data);
-// })
-// .catch(error => {
-// setUserData(error)
-// })
-// console.log(userData,'inside the hooks');
-//   return  [userData]
-//  };
+const useUsersData = () => {
+  const { user } = useContext(AuthenticationContext);
+  const axiosPublic = useAxionPublic();
+  const [userData, setUserData] = useState();
+  const currentUser = user?.email;
+  useEffect(() => {
+    if (currentUser) {
+      axiosPublic
+        .get(`/user/${currentUser}`)
+        .then((res) => {
+          setUserData(res.data);
+          console.log(res.data, "nav e data ");
+        })
+        .catch((error) => {
+          console.error("Error fetching user data:", error);
+        });
+    }
+  }, [currentUser]);
+ 
+  return  userData ;
+ };
 
-// export default useUsersData;
+export default useUsersData;
