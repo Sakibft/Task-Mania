@@ -1,26 +1,38 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { AuthenticationContext } from "../providers/ContextComponent";
 import mony from '../../src/assets/money.png'
+import useAxionPublic from "../hooks/useAxionPublic";
+import { AuthenticationContext } from "../providers/ContextComponent";
+ 
 const Nav = () => {
+const axiosPublic = useAxionPublic();
   const { user, logOut } = useContext(AuthenticationContext);
   console.log(user, "inside the navbar");
   const [dropDownState, setDropDownState] = useState(false);
+  const [coin,setCoin]=useState();
   const dropDownMenuRef = useRef();
-
+const currentUser = user?.email;
+console.log(currentUser);
   useEffect(() => {
     const closeDropDown = (e) => {
       if (!dropDownMenuRef?.current?.contains(e?.target)) {
         setDropDownState(false);
       }
     };
-
     document.addEventListener("mousedown", closeDropDown);
-
     return () => {
       document.removeEventListener("mousedown", closeDropDown);
     };
   }, []);
+  // data get for navbar coin show 
+axiosPublic.get(`/user/${currentUser}`)
+.then(res =>{
+setCoin(res.data.coin)
+  console.log(res.data,'nav e data ');
+})
+.catch(error => {
+  console.log(error);
+})
   return (
     <div className=" w-full bg-opacity-80">
       <nav className="flex items-center justify-between bg-[#393E46] px-4 py-2 text-white">
@@ -48,7 +60,7 @@ const Nav = () => {
               <li className="group flex  cursor-pointer flex-col">
                 <div className="flex justify-center items-center ">
                 <img className="w-12" src={mony} alt="" />
-               <h1 className="font-bold text-2xl"> 10</h1>
+               <h1 className="font-bold text-2xl">{coin} </h1>
                 </div>
                
                 <span className="mt-[2px] h-[3px]  w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>

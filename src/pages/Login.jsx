@@ -6,8 +6,10 @@ import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { Link } from "react-router-dom";
 // import UseAuth from "../../hooks/UseAuth";
 import useAuth from "../hooks/useAuth";
+import useAxionPublic from "../hooks/useAxionPublic";
 const Login = () => {
   const { loginUser, loginWithGoogle } = useAuth();
+  const axiosPublic = useAxionPublic();
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState();
   const [success, setSuccess] = useState();
@@ -49,6 +51,21 @@ const Login = () => {
   const handleGoogle = () => {
     loginWithGoogle()
       .then((result) => {
+        const category = 'worker';
+        const coin = 10 ;
+        const userInfo = {
+          name:result.user.displayName,email:result.user.email,photo:result.user.photoURL,category:category,coin: coin
+        }
+        axiosPublic.post('/user',userInfo)
+        .then(res => {
+          console.log(res.data);
+        })
+
+
+
+
+
+        
         console.log(result);
         toast.success("Successfully login with google");
       })
