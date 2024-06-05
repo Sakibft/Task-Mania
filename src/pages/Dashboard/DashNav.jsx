@@ -1,23 +1,52 @@
-import { IoLogoFacebook } from "react-icons/io";
-import { NavLink } from "react-router-dom";
-
+import { useContext, useEffect, useState } from "react";
+import { AuthenticationContext } from "../../providers/ContextComponent";
+import useAxionPublic from "../../hooks/useAxionPublic";
+import { Link, NavLink } from "react-router-dom";
 const DashNav = () => {
+  const { user } = useContext(AuthenticationContext);
+  const axiosPublic = useAxionPublic();
+  const [userData, setUserData] = useState();
+  const currentUser = user?.email;
+  useEffect(() => {
+    if (currentUser) {
+      axiosPublic
+        .get(`/user/${currentUser}`)
+        .then((res) => {
+          setUserData(res.data);
+          console.log(res.data, "nav e data ");
+        })
+        .catch((error) => {
+          console.error("Error fetching user data:", error);
+        });
+    }
+  }, [currentUser]);
+
+  const coin = userData?.coin;
+  const category = userData?.category;
+
   return (
     <div className="container mx-auto">
       <div className="navbar bg-base-100 ">
         <div className="navbar-start">
-          <a className="btn btn-ghost text-xl">Logo</a>
+          <Link to='/' className="btn btn-ghost text-xl">Logo</Link>
         </div>
         {/* <div className="navbar-center hidden md"></div> */}
-   
-          <div className="navbar-end relative border ">
 
- 
-
-
-
-          <button>
-          <svg
+        <div className="navbar-end relative border space-x-5 ">
+          <div>
+            <h1>{coin}</h1>
+            <h1>{category}</h1>
+          </div>
+          <div className="flex flex-col justify-center items-center ">
+            <div className="avatar">
+              <div className="w-12 rounded-full">
+                <img src={user?.photoURL} />
+              </div>
+            </div>
+            <h1>{user?.displayName}</h1>
+          </div>
+          <button className="border rounded-md hover:bg-slate-300">
+            <svg
               width="40px"
               viewBox="-4.32 -4.32 32.64 32.64"
               fill="none"
@@ -48,21 +77,70 @@ const DashNav = () => {
               12
             </span>
           </button>
-          </div>
         </div>
-    
+      </div>
+
       {/* dashboard */}
-      {/* <div className="w-64 min-h-screen bg-orange-500">
+      <div className="w-64 min-h-[calc(100vh-290px)]  bg-green-100">
         <ul className="menu">
+          {/* worker */}
+          {userData?.category === "worker" && (
+            <>
               <li>
-                <NavLink to="/dashboard/adminHome">
-                 Admin Home
-                </NavLink>
+                <NavLink to="/dashboard/workerHome">Home</NavLink>
               </li>
-           <div className="divider"></div>
-            
+              <li>
+                <NavLink to="/dashboard/workerTasklist">TaskList</NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/workerSubmission">My Submissions</NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/workerWithdrawals">Withdrawals</NavLink>
+              </li>
+            </>
+          )}
+          {/* taskCreator */}
+
+        {
+          userData?.category === "taskCreator" && (
+            <>
+             <li>
+                <NavLink to="/dashboard/taskCreatorHome">Home</NavLink>
+              </li>
+             <li>
+                <NavLink to="/dashboard/taskCreatorAddNewTasks">Add new Tasks</NavLink>
+              </li>
+             <li>
+                <NavLink to="/dashboard/taskCreatorMyTasks">My Tasks</NavLink>
+              </li>
+             <li>
+                <NavLink to="/dashboard/taskCreatorPurchaseCoin">Purchase Coin</NavLink>
+              </li>
+             <li>
+                <NavLink to="/dashboard/taskCreatorPaymentHistory">Payment history</NavLink>
+              </li>
+            </>
+          )
+        }
+        {/* Admin */}
+         {
+            userData?.category === "admin" && (
+              <>
+               <li>
+                <NavLink to="/dashboard/adminHome">Home</NavLink>
+              </li>
+               <li>
+                <NavLink to="/dashboard/adminMangeUsers">Mange Users</NavLink>
+              </li>
+               <li>
+                <NavLink to="/dashboard/adminManageTask">Manage Task</NavLink>
+              </li>
+              </>
+            )
+          }
         </ul>
-      </div> */}
+      </div>
     </div>
   );
 };
