@@ -51,7 +51,7 @@ const Login = () => {
   const handleGoogle = () => {
     loginWithGoogle()
       .then((result) => {
-        const category = 'worker';
+        const category = 'Worker';
         const coin = 10 ;
         const userInfo = {
           name:result.user.displayName,email:result.user.email,photo:result.user.photoURL,category:category,coin: coin
