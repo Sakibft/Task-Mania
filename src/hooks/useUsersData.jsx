@@ -14,7 +14,7 @@ const useUsersData = () => {
         .get(`/user/${currentUser}`)
         .then((res) => {
           setUserData(res.data);
-          console.log(res.data, "nav e data ");
+          // console.log(res.data, "nav e data ");
         })
         .catch((error) => {
           console.error("Error fetching user data:", error);

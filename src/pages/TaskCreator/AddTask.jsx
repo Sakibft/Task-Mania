@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { AuthenticationContext } from "../../providers/ContextComponent";
 import useUsersData from "../../hooks/useUsersData";
 import useAxionPublic from "../../hooks/useAxionPublic";
+import toast from "react-hot-toast";
 
  
 
@@ -35,6 +36,7 @@ const AddTask = () => {
     axiosPublic.post('/task',taskInfo)
     .then(res =>{
       console.log(res.data,'inside the add component');
+      toast.success('Successfully toasted!')
     })
     .catch(error =>{
       console.log(error);

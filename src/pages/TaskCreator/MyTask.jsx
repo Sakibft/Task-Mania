@@ -1,43 +1,46 @@
 import { useContext, useEffect, useState } from "react";
 import useAxionPublic from "../../hooks/useAxionPublic";
 import { AuthenticationContext } from "../../providers/ContextComponent";
-import {  useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import toast from "react-hot-toast";
+import { Link, Navigate } from "react-router-dom";
 
 const MyTask = () => {
-  const {user} = useContext(AuthenticationContext)
+  const { user } = useContext(AuthenticationContext);
   const axiosPublic = useAxionPublic();
   // get specific tasks for current user
-  const {data : myTasks, refetch,} = useQuery({
-    queryKey:['myTask',user?.email],
-    queryFn: () => getTasks()
-  })
+  const { data: myTasks, refetch } = useQuery({
+    queryKey: ["myTask", user?.email],
+    queryFn: () => getTasks(),
+  });
   // console.log(myTasks);
   const getTasks = async () => {
-    const {data} = await axiosPublic.get(`/tasks/${user?.email}`)
-    return data ;
-  }
-  // delete task 
-  const {mutateAsync} = useMutation({
-mutationFn: async(id) => {
-  const {data} = await axiosPublic.delete(`/task/${id}`)
-  refetch();
-  console.log(data);
-  console.log(id,'hahah');
-} ,
+    const { data } = await axiosPublic.get(`/tasks/${user?.email}`);
+    return data;
+  };
+  // delete task
+  const { mutateAsync } = useMutation({
+    mutationFn: async (id) => {
+      const { data } = await axiosPublic.delete(`/task/${id}`);
+      refetch();
+      console.log(data);
+      toast.error("Delete task ");
+    },
+    onSuccess: () => {
+      console.log("delete ❌");
+    },
+  });
 
-onSuccess: () => {
-console.log('delete ❌');
- 
-}
-  })
-  // delete task 
-  const handleDelete = id => {
-    mutateAsync(id)
-// console.log(id);
-  }
-  
- 
- 
+  // delete task
+  const handleDelete = (id) => {
+    mutateAsync(id);
+    // console.log(id);
+  };
+  // update task
+  const handleUpdate = (id) => {
+    console.log(id);
+  };
+
   return (
     <div>
       <div className="w-full flex flex-col justify-center items-center ">
@@ -55,24 +58,30 @@ console.log('delete ❌');
                 </tr>
               </thead>
               <tbody>
-                {
-                  myTasks && myTasks.map(task => (
+                {myTasks &&
+                  myTasks.map((task) => (
                     <tr key={task._id}>
-                    <td>{task.title}</td>
-                    <td>{task.quantity}</td>
-                    <td>{task.amount}</td>
-                    <td>
-                      <button className="border flex gap-2 py-1 px-2  bg-pink-400 text-white   font-semibold rounded-md border-pink-400">
-                        Update
-                      </button>
-                      <button onClick={()=>handleDelete(task._id)} className="border flex gap-2 py-1 px-2  text-pink-400  font-semibold rounded-md border-pink-400 mt-2">
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                  ))
-                }
-             
+                      <td>{task.title}</td>
+                      <td>{task.quantity}</td>
+                      <td>{task.amount}</td>
+                      <td>
+                       <Link to={`/dashboard/update/${task._id}`}>
+
+                        <button
+                          className="border flex gap-2 py-1 px-2  bg-pink-400 text-white   font-semibold rounded-md border-pink-400"
+                        >
+                          Update
+                        </button>
+                       </Link>
+                        <button
+                          onClick={() => handleDelete(task._id)}
+                          className="border flex gap-2 py-1 px-2  text-pink-400  font-semibold rounded-md border-pink-400 mt-2"
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
               </tbody>
               {/* foot */}
             </table>
