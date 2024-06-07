@@ -8,6 +8,7 @@ import Dashboard from "../pages/Dashboard/Dashboard";
 import AddTask from "../pages/TaskCreator/AddTask";
 import MyTask from "../pages/TaskCreator/MyTask";
 import Update from "../pages/TaskCreator/Update";
+import PurchaseCoin from "../pages/TaskCreator/PurchaseCoin";
 
 const router = createBrowserRouter([
   {
@@ -35,16 +36,20 @@ const router = createBrowserRouter([
     errorElement:<Error></Error>,
     children:[
 {
-  path:'taskCreatorAddNewTasks',
+  path:'addNewTasks',
   element:<AddTask></AddTask>
 },
 {
-  path:'taskCreatorMyTasks',
+  path:'myTasks',
   element:<MyTask></MyTask>
 },
 {
   path:'update/:id',
   element:<Update></Update>
+},
+{
+path:'purchaseCoin',
+element:<PurchaseCoin></PurchaseCoin>
 }
     ]
     

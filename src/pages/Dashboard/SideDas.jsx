@@ -54,16 +54,16 @@ import { NavLink } from "react-router-dom";
                 <NavLink to="/">Home</NavLink>
               </li>
              <li>
-                <NavLink to="/dashboard/taskCreatorAddNewTasks">Add new Tasks</NavLink>
+                <NavLink to="/dashboard/addNewTasks">Add new Tasks</NavLink>
               </li>
              <li>
-                <NavLink to="/dashboard/taskCreatorMyTasks">My Tasks</NavLink>
+                <NavLink to="/dashboard/myTasks">My Tasks</NavLink>
               </li>
              <li>
-                <NavLink to="/dashboard/taskCreatorPurchaseCoin">Purchase Coin</NavLink>
+                <NavLink to="/dashboard/purchaseCoin">Purchase Coin</NavLink>
               </li>
              <li>
-                <NavLink to="/dashboard/taskCreatorPaymentHistory">Payment history</NavLink>
+                <NavLink to="/dashboard/paymentHistory">Payment history</NavLink>
               </li>
             </>
           )

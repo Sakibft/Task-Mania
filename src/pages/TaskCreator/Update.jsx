@@ -1,8 +1,9 @@
 import { useMutation } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useAxionPublic from "../../hooks/useAxionPublic";
 import toast from "react-hot-toast";
 const Update = () => {
+  const navigate = useNavigate();
   const axiosPublic = useAxionPublic();
   const { id } = useParams();
   // get update data
@@ -12,6 +13,7 @@ const Update = () => {
       console.log(data, "haha");
     },
     onSuccess:()=>{
+      navigate('/dashboard/taskCreatorMyTasks')
       toast.success('successfully update')
     }
   });

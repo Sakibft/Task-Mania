@@ -1,0 +1,18 @@
+[
+  {
+    "Coin" : 10 ,
+    "Dollars":1 
+  },
+  {
+    "Coin" : 100 ,
+    "Dollars":9 
+  },
+  {
+    "Coin" : 500 ,
+    "Dollars":19
+  },
+  {
+    "Coin" : 1000 ,
+    "Dollars":39 
+  }
+]
