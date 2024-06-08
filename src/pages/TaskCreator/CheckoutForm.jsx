@@ -1,0 +1,107 @@
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import useAxionPublic from "../../hooks/useAxionPublic";
+import useAuth from "../../hooks/useAuth";
+import { signInAnonymously } from "firebase/auth";
+ 
+  
+
+const CheckoutForm = ({coin,dollars}) => {
+  // console.log(coin?.coin);
+ console.log(coin);
+ console.log(dollars);
+  const {user} = useAuth();
+   const axiosPublic = useAxionPublic()
+  const [error,setError] = useState('');
+  const [transactionId,setTransactionId] = useState();
+  const [clientSecrete,setClientSecrete]= useState('');
+  // console.log(clientSecrete,'client secrete client side ');
+  
+  const stripe = useStripe();
+  const elements = useElements();
+ 
+useEffect(()=>{
+  axiosPublic.post('/create-payment-intent',{coin:coin})
+  .then(res => {
+    console.log(res.data.clientSecret);
+    setClientSecrete(res.data.clientSecret)
+  })
+},[coin,axiosPublic])
+
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    if(!stripe || !elements){
+      return
+    }
+    const card = elements.getElement(CardElement)
+    if (card == null) {
+      return;
+    }
+    const {error, paymentMethod} = await stripe.createPaymentMethod({
+      type: 'card',
+      card,
+    });
+    if (error) {
+      console.log('[error]', error);
+      setError(error.message)
+    } else {
+      console.log('PaymentMethod', paymentMethod);
+      setError('')
+    }
+    // confirm payment
+    const {paymentIntent,error:confirmError} = await stripe.confirmCardPayment(clientSecrete,{
+      payment_method:{
+        card: card ,
+        billing_details:{
+        email: user?.email || 'anonymous',
+        name:user?.displayName || 'anonymous'
+        }        
+      }
+    })
+    if(confirmError){
+      console.log('confirmError');
+    }else{
+      console.log('paymentIntent', paymentIntent);
+      if(paymentIntent.status === 'succeeded'){
+        setTransactionId(paymentIntent.id)
+        console.log('transaction');
+ 
+      }
+    }
+  }
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+      <CardElement
+        options={{
+          style: {
+            base: {
+              fontSize: '16px',
+              color: '#424770',
+              '::placeholder': {
+                color: '#aab7c4',
+              },
+            },
+            invalid: {
+              color: '#9e2146',
+            },
+          },
+        }}
+      />
+      <button 
+      disabled={!stripe || !clientSecrete}
+       className="btn btn-primary my-4 btn-sm" type="submit"  >
+        Pay
+      </button>
+      <p className="text-red-300">{error}</p>
+      {
+        transactionId && <p className="text-green-400">Your transaction id : {transactionId}</p>
+      }
+      </form>
+    </div>
+  );
+};
+
+export default CheckoutForm;

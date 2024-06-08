@@ -9,6 +9,7 @@ import AddTask from "../pages/TaskCreator/AddTask";
 import MyTask from "../pages/TaskCreator/MyTask";
 import Update from "../pages/TaskCreator/Update";
 import PurchaseCoin from "../pages/TaskCreator/PurchaseCoin";
+import PaymentForCoin from "../pages/TaskCreator/PaymentForCoin";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
 {
 path:'purchaseCoin',
 element:<PurchaseCoin></PurchaseCoin>
+},
+{
+  path:'payment/:coin',
+  element:<PaymentForCoin></PaymentForCoin>
 }
     ]
     
