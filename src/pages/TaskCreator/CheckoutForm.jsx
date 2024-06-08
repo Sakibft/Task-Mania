@@ -61,13 +61,28 @@ useEffect(()=>{
       }
     })
     if(confirmError){
+      setTransactionId('')
+      setError(confirmError.message)
       console.log('confirmError');
     }else{
       console.log('paymentIntent', paymentIntent);
       if(paymentIntent.status === 'succeeded'){
+        // setClientSecrete('')
         setTransactionId(paymentIntent.id)
         console.log('transaction');
- 
+// now same the payment in the database
+        const payment = {
+          email: user?.email,
+          name: user?.displayName,
+          current_date:new Date(),
+          coin_purchase:coin,
+          amount:dollars
+        }
+        axiosPublic.post('/payment',payment)
+        .then(result => {
+          console.log(result.data);
+        })
+        console.log(payment);
       }
     }
   }
