@@ -35,13 +35,13 @@ import { NavLink } from "react-router-dom";
                 <NavLink to="/">Home</NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/workerTasklist">TaskList</NavLink>
+                <NavLink to="/dashboard/tasklist">TaskList</NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/workerSubmission">My Submissions</NavLink>
+                <NavLink to="/dashboard/submission">My Submissions</NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/workerWithdrawals">Withdrawals</NavLink>
+                <NavLink to="/dashboard/withdrawals">Withdrawals</NavLink>
               </li>
             </>
           )}
