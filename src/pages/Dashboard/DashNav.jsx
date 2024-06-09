@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import useUsersData from "../../hooks/useUsersData";
 const DashNav = () => {
   const { user } = useContext(AuthenticationContext);
-  const userData = useUsersData();
+  const [userData] = useUsersData();
+ 
   const coin = userData?.coin;
   const category = userData?.category;
   return (

@@ -39,7 +39,7 @@ const AddTask = () => {
       toast.success('Successfully toasted!')
     })
     .catch(error =>{
-      console.log(error);
+      console.log(error.message);
     })
     
     console.log(taskInfo);

@@ -1,17 +1,19 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+ 
 import useAxionPublic from "../../hooks/useAxionPublic";
 import useAuth from "../../hooks/useAuth";
-import { signInAnonymously } from "firebase/auth";
+import useUsersData from "../../hooks/useUsersData";
+ 
  
   
 
 const CheckoutForm = ({coin,dollars}) => {
-  // console.log(coin?.coin);
- console.log(coin);
- console.log(dollars);
+ 
   const {user} = useAuth();
+ 
+ const [userData,refetch] = useUsersData();
+ console.log(userData);
    const axiosPublic = useAxionPublic()
   const [error,setError] = useState('');
   const [transactionId,setTransactionId] = useState();
@@ -67,10 +69,21 @@ useEffect(()=>{
     }else{
       console.log('paymentIntent', paymentIntent);
       if(paymentIntent.status === 'succeeded'){
-        // setClientSecrete('')
-        setTransactionId(paymentIntent.id)
+        setTransactionId(paymentIntent.id);
+        // update user coin 
+     const upCoin = {
+      coin : coin,
+      email:user?.email
+
+     }
+        axiosPublic.put('/user',upCoin)
+        .then(res =>{
+          refetch()
+          console.log(res.data);
+        })
+
         console.log('transaction');
-// now same the payment in the database
+// now save the payment in the database
         const payment = {
           email: user?.email,
           name: user?.displayName,
@@ -78,6 +91,7 @@ useEffect(()=>{
           coin_purchase:coin,
           amount:dollars
         }
+   
         axiosPublic.post('/payment',payment)
         .then(result => {
           console.log(result.data);

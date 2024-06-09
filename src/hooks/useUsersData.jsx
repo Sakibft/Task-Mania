@@ -1,28 +1,26 @@
  
 import useAxionPublic from './useAxionPublic';
 import { AuthenticationContext } from '../providers/ContextComponent';
-import { useContext, useEffect, useState } from 'react';
+import { useContext,  } from 'react';
+import {  useQuery } from "@tanstack/react-query";
 
 const useUsersData = () => {
   const { user } = useContext(AuthenticationContext);
   const axiosPublic = useAxionPublic();
-  const [userData, setUserData] = useState();
+   
   const currentUser = user?.email;
-  useEffect(() => {
-    if (currentUser) {
-      axiosPublic
-        .get(`/user/${currentUser}`)
-        .then((res) => {
-          setUserData(res.data);
-          // console.log(res.data, "nav e data ");
-        })
-        .catch((error) => {
-          console.error("Error fetching user data:", error);
-        });
-    }
-  }, [currentUser]);
+
+   
+const {data:userData, refetch } = useQuery({
+  queryFn:async() =>{
+   const usrData = await axiosPublic.get(`/user/${currentUser}`)
+   return usrData.data;
+  },
+  queryKey:['userData',currentUser]
+}) 
  
-  return  userData ;
+ 
+  return  [userData,refetch] ;
  };
 
 export default useUsersData;

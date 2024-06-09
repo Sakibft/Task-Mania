@@ -4,7 +4,7 @@ import mony from "../../src/assets/money.png";
 import { AuthenticationContext } from "../providers/ContextComponent";
 import useUsersData from "../hooks/useUsersData";
 const Nav = () => {
-  const userData = useUsersData();
+  const [userData] = useUsersData();
   const { user, logOut } = useContext(AuthenticationContext);
   const [dropDownState, setDropDownState] = useState(false);
   const dropDownMenuRef = useRef();
