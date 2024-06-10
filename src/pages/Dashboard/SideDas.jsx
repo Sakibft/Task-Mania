@@ -76,10 +76,10 @@ import { NavLink } from "react-router-dom";
                 <NavLink to="/">Home</NavLink>
               </li>
                <li>
-                <NavLink to="/dashboard/adminMangeUsers">Mange Users</NavLink>
+                <NavLink to="/dashboard/mangeUsers">Mange Users</NavLink>
               </li>
                <li>
-                <NavLink to="/dashboard/adminManageTask">Manage Task</NavLink>
+                <NavLink to="/dashboard/manageTask">Manage Task</NavLink>
               </li>
               </>
             )

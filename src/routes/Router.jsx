@@ -16,82 +16,86 @@ import Details from "../pages/Worker/Details";
 import WorkerSubmit from "../pages/Worker/WorkerSubmit";
 import WorkerHome from "../pages/Worker/WorkerHome";
 import TaskCreatorHome from "../pages/TaskCreator/TaskCreatorHome";
+import ManageUser from "../pages/Admin/ManageUser";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layouts></Layouts>,
-    errorElement:<Error></Error>,
-    children:[
+    errorElement: <Error></Error>,
+    children: [
       {
-        path: '/',
-        element: <Home></Home>
+        path: "/",
+        element: <Home></Home>,
       },
       {
-        path:'/login',
-        element:<Login></Login>
+        path: "/login",
+        element: <Login></Login>,
       },
       {
-        path:'/register',
-        element:<Register></Register>
-      }
-    ]
+        path: "/register",
+        element: <Register></Register>,
+      },
+    ],
   },
   {
-    path:'dashBoard',
-    element:<Dashboard></Dashboard>,
-    errorElement:<Error></Error>,
-    children:[
+    path: "dashBoard",
+    element: <Dashboard></Dashboard>,
+    errorElement: <Error></Error>,
+    children: [
       // for task Creator
       {
-        path:'taskCreatorHome',
-        element:<TaskCreatorHome></TaskCreatorHome>
+        path: "taskCreatorHome",
+        element: <TaskCreatorHome></TaskCreatorHome>,
       },
-{
-  path:'addNewTasks',
-  element:<AddTask></AddTask>
-},
-{
-  path:'myTasks',
-  element:<MyTask></MyTask>
-},
-{
-  path:'update/:id',
-  element:<Update></Update>
-},
-{
-path:'purchaseCoin',
-element:<PurchaseCoin></PurchaseCoin>
-},
-{
-  path:'payment/:coin',
-  element:<PaymentForCoin></PaymentForCoin>
-},
-{
-  path:'paymentHistory',
-  element:<PaymentHistory></PaymentHistory>
-},
-// for  worker 
-{
-  path:'workerHome',
-  element:<WorkerHome></WorkerHome>
-},
-{
-path:'tasklist',
-element:<TaskList></TaskList>
-},
-{
-  path:'details/:id',
-  element:<Details></Details>
-},
-{
-  path:'submission',
-  element:<WorkerSubmit></WorkerSubmit>
- 
-}
-    ]
-    
-  }
+      {
+        path: "addNewTasks",
+        element: <AddTask></AddTask>,
+      },
+      {
+        path: "myTasks",
+        element: <MyTask></MyTask>,
+      },
+      {
+        path: "update/:id",
+        element: <Update></Update>,
+      },
+      {
+        path: "purchaseCoin",
+        element: <PurchaseCoin></PurchaseCoin>,
+      },
+      {
+        path: "payment/:coin",
+        element: <PaymentForCoin></PaymentForCoin>,
+      },
+      {
+        path: "paymentHistory",
+        element: <PaymentHistory></PaymentHistory>,
+      },
+      // for  worker
+      {
+        path: "workerHome",
+        element: <WorkerHome></WorkerHome>,
+      },
+      {
+        path: "tasklist",
+        element: <TaskList></TaskList>,
+      },
+      {
+        path: "details/:id",
+        element: <Details></Details>,
+      },
+      {
+        path: "submission",
+        element: <WorkerSubmit></WorkerSubmit>,
+      },
+      // for Admin
+      {
+        path:'mangeUsers',
+        element:<ManageUser></ManageUser>
+      }
+    ],
+  },
 ]);
 
-export default router ;
+export default router;

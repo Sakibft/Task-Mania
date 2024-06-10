@@ -12,8 +12,6 @@ const result = await axiosPublic.get('/payment')
   queryKey:['paymentData']
 })
 console.log(payment);
-
-
   return (
     <div>
        <div className="w-full flex flex-col justify-center items-center ">
