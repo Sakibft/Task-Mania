@@ -5,6 +5,7 @@ import useAxionPublic from "../../hooks/useAxionPublic";
 const ManageUser = () => {
   const { user } = useAuth();
   const axiosPublic = useAxionPublic();
+  // get all user
   const { data: allUser, refetch } = useQuery({
     queryFn: async () => {
       const user = await axiosPublic.get("/user");
@@ -26,8 +27,31 @@ const ManageUser = () => {
   const handleRemove = (id) => {
     mutateAsync({id})
   }
+  const {mutateAsync:updateStatus} = useMutation({
+// sapose pailam 
+    mutationFn : async({statusInfo})=>{
+    const upStatus = await axiosPublic.put(`/userStatus`,statusInfo)
+    // console.log(statusInfo); 
+console.log(upStatus.data);
+    },
+    onSuccess:()=>{
+      refetch()
+    }
+  })
+const handleStatus = (email,e) => {
+  const status = e.target.value;
+  const statusInfo = {
+    status:status,
+    email:email
+  }
+  // console.log(statusInfo);
+  // console.log(id);
+  // console.log(status);
+  updateStatus({statusInfo})
+ 
+}
+
   return (
-    
     <div>
       <div className="w-full flex flex-col justify-center items-center ">
         <h1 className="text-center mb-2 text-2xl font-bold">My Collection</h1>
@@ -67,7 +91,7 @@ const ManageUser = () => {
                           Remove
                         </button>
 
-                        <select className="border w-16 rounded-lg p-1 mt-2">
+                        <select onChange={(e)=>handleStatus(user.email,e)} className="border w-16 rounded-lg p-1 mt-2">
                           <option disabled selected>
                             Role
                           </option>
