@@ -13,6 +13,7 @@ import PaymentForCoin from "../pages/TaskCreator/PaymentForCoin";
 import PaymentHistory from "../pages/TaskCreator/PaymentHistory";
 import TaskList from "../pages/Worker/TaskList";
 import Details from "../pages/Worker/Details";
+import WorkerSubmit from "../pages/Worker/WorkerSubmit";
 
 const router = createBrowserRouter([
   {
@@ -72,6 +73,11 @@ element:<TaskList></TaskList>
 {
   path:'details/:id',
   element:<Details></Details>
+},
+{
+  path:'submission',
+  element:<WorkerSubmit></WorkerSubmit>
+ 
 }
     ]
     
