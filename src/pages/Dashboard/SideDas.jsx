@@ -32,7 +32,7 @@ import { NavLink } from "react-router-dom";
           {userData?.category === "Worker" && (
             <>
               <li>
-                <NavLink to="/">Home</NavLink>
+                <NavLink to="/dashboard/workerHome">Home</NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/tasklist">TaskList</NavLink>
@@ -51,7 +51,7 @@ import { NavLink } from "react-router-dom";
           userData?.category === "Task Creator" && (
             <>
              <li>
-                <NavLink to="/">Home</NavLink>
+                <NavLink to="/dashboard/taskCreatorHome">Home</NavLink>
               </li>
              <li>
                 <NavLink to="/dashboard/addNewTasks">Add new Tasks</NavLink>

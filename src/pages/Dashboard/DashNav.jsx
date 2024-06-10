@@ -13,7 +13,7 @@ const DashNav = () => {
       {/* nav */}
       <div className="navbar bg-base-100 border">
         <div className="navbar-start">
-          <Link className="btn btn-ghost text-xl">Logo</Link>
+          <Link to='/' className="btn btn-ghost text-xl">Logo</Link>
         </div>
         {/* <div className="navbar-center hidden md"></div> */}
 
