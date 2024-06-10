@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 import useAxionPublic from "../../hooks/useAxionPublic";
+import { Link } from "react-router-dom";
 
 const TaskList = () => {
   const axiosPublic = useAxionPublic();
@@ -26,7 +27,9 @@ const TaskList = () => {
                 <p>{task?.amount}</p>
                 <p>{task?.quantity}</p>
                 <div className="card-actions justify-end">
-                  <button className="btn btn-primary">View Details</button>
+                 <Link to={`/dashboard/details/${task._id}`}>
+                 <button className="btn btn-primary">View Details</button>
+                 </Link>
                 </div>
               </div>
             </div>
