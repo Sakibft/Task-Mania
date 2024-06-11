@@ -1,19 +1,24 @@
 import { useContext, useEffect, useState } from "react";
-import useAxionPublic from "../../hooks/useAxionPublic";
 import { AuthenticationContext } from "../../providers/ContextComponent";
 import { NavLink } from "react-router-dom";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
  
  
  const SideDas = () => {
   const { user } = useContext(AuthenticationContext);
-  const axiosPublic = useAxionPublic();
+  // const axiosPublic = useAxionPublic();
+  const axiosSecure = useAxiosSecure();
   const [userData, setUserData] = useState();
   const currentUser = user?.email;
   useEffect(() => {
     if (currentUser) {
-      axiosPublic
-        .get(`/user/${currentUser}`)
+      axiosSecure
+        .get(`/user/${currentUser}`,{
+          headers:{
+            Authorization:`Bearer ${localStorage.getItem('access-token')}`
+          }
+        })
         .then((res) => {
           setUserData(res.data);
           // console.log(res.data, "nav e data ");
@@ -22,7 +27,7 @@ import { NavLink } from "react-router-dom";
           console.error("Error fetching user data:", error);
         });
     }
-  }, [currentUser]);
+  }, [currentUser,axiosSecure]);
   return (
     <div>
        {/* dashboard */}

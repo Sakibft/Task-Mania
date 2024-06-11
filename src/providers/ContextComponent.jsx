@@ -11,11 +11,14 @@ import { createContext, useEffect, useState } from "react";
 import { GoogleAuthProvider } from "firebase/auth";
 // import axios from "axios";
 import auth from "../firebase/fConfig";
+import useAxionPublic from "../hooks/useAxionPublic";
+ 
 
 const Provider = new GoogleAuthProvider();
 export const AuthenticationContext = createContext();
 
 const ContextComponent = ({ children }) => {
+  const axiosPublic = useAxionPublic();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   console.log(user);
@@ -49,36 +52,23 @@ const ContextComponent = ({ children }) => {
 
   useEffect(() => {
     const unSubsCribe = onAuthStateChanged(auth, (currentUser) => {
-      // const userEmail = currentUser?.email || user?.email;
-      // const loggedUser = { email: userEmail };
-
       setUser(currentUser);
       setLoading(false);
-
-      // if user exists then issue a token
-      // if (currentUser) {
-      //   axios
-      //     .post(`${import.meta.env.VITE_API_URL}/jwt`, loggedUser, {
-      //       withCredentials: true,
-      //     })
-      //     .then((res) => {
-      //       console.log("token response", res.data);
-      //     })
-      //     .catch((error) => {
-      //       console.log(error);
-      //     });
-      // } else {
-      //   axios
-      //     .post(`${import.meta.env.VITE_API_URL}/logout`, loggedUser, {
-      //       withCredentials: true,
-      //     })
-      //     .then((res) => {
-      //       console.log(res.data);
-      //     })
-      //     .catch((error) => {
-      //       console.log("token error", error);
-      //     });
-      // }
+      if(currentUser){
+        // get token and store client
+        const userInfo = {email: currentUser.email}
+           axiosPublic.post('/jwt', userInfo)
+           .then(res => {
+            if(res.data.token){
+              localStorage.setItem('access-token', res.data.token);
+               setLoading(false)
+            }
+           })
+            }else{
+              // dodo : remove token (if token stored in the client side : local storage, caching, in memory)
+           localStorage.removeItem('access-token');
+        setLoading(false)
+            }
     });
     return () => {
       unSubsCribe();

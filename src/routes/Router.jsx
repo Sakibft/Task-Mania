@@ -17,6 +17,8 @@ import WorkerSubmit from "../pages/Worker/WorkerSubmit";
 import WorkerHome from "../pages/Worker/WorkerHome";
 import TaskCreatorHome from "../pages/TaskCreator/TaskCreatorHome";
 import ManageUser from "../pages/Admin/ManageUser";
+import ManageTask from "../pages/Admin/ManageTask";
+import Private from "./Private";
 
 const router = createBrowserRouter([
   {
@@ -40,7 +42,7 @@ const router = createBrowserRouter([
   },
   {
     path: "dashBoard",
-    element: <Dashboard></Dashboard>,
+    element: <Private><Dashboard></Dashboard></Private>,
     errorElement: <Error></Error>,
     children: [
       // for task Creator
@@ -93,6 +95,10 @@ const router = createBrowserRouter([
       {
         path:'mangeUsers',
         element:<ManageUser></ManageUser>
+      },
+      {
+        path:'manageTask',
+        element:<ManageTask></ManageTask>
       }
     ],
   },
