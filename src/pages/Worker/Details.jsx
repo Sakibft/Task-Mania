@@ -27,12 +27,13 @@ const Details = () => {
     const workerName = user?.displayName;
     const date = taskDetail?.date;
     const amount = taskDetail?.amount;
+    const quantity = taskDetail?.quantity;
     const currentDate = taskDetail?.currentTime;
     const detail = taskDetail?.detail;
     const taskId = taskDetail?._id;
     const status = "Pending";
     const submissionIfo = {
-      image,taskTitle,creatorName,creatorEmail,workerName,workerEmail,date,amount,currentDate,detail,taskId,status,submission_Details
+      image,taskTitle,creatorName,creatorEmail,workerName,workerEmail,date,amount,quantity,currentDate,detail,taskId,status,submission_Details
     }
   
       axiosPublic.post('/submission',submissionIfo)

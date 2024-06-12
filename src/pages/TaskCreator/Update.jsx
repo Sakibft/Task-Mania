@@ -13,7 +13,7 @@ const Update = () => {
       console.log(data, "haha");
     },
     onSuccess:()=>{
-      navigate('/dashboard/taskCreatorMyTasks')
+      navigate('/dashboard/myTasks')
       toast.success('successfully update')
     }
   });

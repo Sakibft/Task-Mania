@@ -30,6 +30,7 @@ const ManageUser = () => {
   const {mutateAsync:updateStatus} = useMutation({
 // sapose pailam 
     mutationFn : async({statusInfo})=>{
+      console.log(statusInfo);
     const upStatus = await axiosPublic.put(`/userStatus`,statusInfo)
     // console.log(statusInfo); 
 console.log(upStatus.data);
@@ -41,9 +42,10 @@ console.log(upStatus.data);
 const handleStatus = (email,e) => {
   const status = e.target.value;
   const statusInfo = {
-    status:status,
+    category:status,
     email:email
   }
+
   // console.log(statusInfo);
   // console.log(id);
   // console.log(status);

@@ -34,6 +34,7 @@ const AddTask = () => {
       title,detail,quantity,amount,date,submission,image, email, name,
       currentTime : new Date(crnTime).toLocaleString() // Convert to readable format
     };
+    console.log(taskInfo);
     // post new task 
     axiosPublic.post('/task',taskInfo)
     .then(res =>{

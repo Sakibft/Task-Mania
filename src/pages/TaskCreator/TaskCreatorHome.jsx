@@ -3,11 +3,14 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import useAxionPublic from "../../hooks/useAxionPublic";
 import useAuth from "../../hooks/useAuth";
 import { updateCurrentUser } from "firebase/auth";
+import { useEffect, useRef, useState } from "react";
 
 const TaskCreatorHome = () => {
   const axiosPublic = useAxionPublic();
+  const [selectedTask, setSelectedTask] = useState(null);
   const { user } = useAuth();
   const status = "Pending";
+  const modalRef = useRef(null); // Create a ref for the modal
 
   const { data: submitedTask } = useQuery({
     queryFn: async () => {
@@ -21,18 +24,17 @@ const TaskCreatorHome = () => {
   const { mutateAsync } = useMutation({
     mutationFn: async ({ info }) => {
       const approved = await axiosPublic.put("/submission", info);
-      if(approved.data.modifiedCount > 0){
+      if (approved.data.modifiedCount > 0) {
         const coyen = info?.coin;
         const email = info?.email;
-        const coin = parseInt(coyen)
+        const coin = parseInt(coyen);
         const upCoin = {
-          coin:coin,
-          email:email
-        }
-        axiosPublic.put('/user',upCoin)
-        .then(res => {
+          coin: coin,
+          email: email,
+        };
+        axiosPublic.put("/user", upCoin).then((res) => {
           console.log(res.data);
-        })
+        });
         console.log(coin);
       }
       console.log(approved.data);
@@ -42,36 +44,59 @@ const TaskCreatorHome = () => {
   const handleApproved = (task) => {
     const id = task?.taskId;
     const coin = task?.amount;
-   const email = task?.workerEmail;
+    const email = task?.workerEmail;
     const info = {
       id: id,
-      coin:coin,
-      email:email,
-      
-      
+      coin: coin,
+      email: email,
+
       status: "Approved",
     };
     console.log(info);
     mutateAsync({ info });
   };
   // Reject
-  const {mutateAsync: RejectTask} = useMutation({
-    mutationFn: async({info}) => {
+  const { mutateAsync: RejectTask } = useMutation({
+    mutationFn: async ({ info }) => {
       const approved = await axiosPublic.put("/submission", info);
       console.log(approved.data);
       console.log(info);
-    }
-  })
+    },
+  });
   const handleReject = (id) => {
     const info = {
       id: id,
       status: "Reject",
     };
-   
-    RejectTask({info})
+
+    RejectTask({ info });
+  };
+  useEffect(() => {
+    if (selectedTask && modalRef.current) {
+      modalRef.current.showModal();
+    }
+  }, [selectedTask]);
+  const handleView = (task) => {
+    console.log(task);
+    setSelectedTask(task);
   };
   return (
     <div>
+      {selectedTask && (
+        <dialog id="my_modal_2" className="modal" ref={modalRef}>
+          <div className="modal-box">
+            <h3 className="font-bold text-lg">{selectedTask.taskTitle}</h3>
+            <p className="py-4">Coin Needed: {selectedTask.amount}</p>
+            <p className="py-4">Quantity: {selectedTask?.quantity}</p>
+            <p className="py-4">
+              submission_Details : {selectedTask?.submission_Details}
+            </p>
+            <form method="dialog" className="modal-backdrop text-black ">
+              <button className="border w-12 mx-auto rounded-lg">close</button>
+            </form>
+          </div>
+        </dialog>
+      )}
       <div className="container mx-auto border rounded-xl shadow-xl w-[1100px]">
         <div className="overflow-x-auto">
           <table className="table">
@@ -80,7 +105,9 @@ const TaskCreatorHome = () => {
               <tr className="border rounded-xl border-b-pink-400">
                 <th>Task Title</th>
                 <th>Payable Amount</th>
-                <th>Creator Name</th>
+                <th>Worker Name</th>
+                <th>Worker Email</th>
+                <th>Submission</th>
 
                 <th>Action</th>
               </tr>
@@ -91,8 +118,13 @@ const TaskCreatorHome = () => {
                   <tr key={task._id}>
                     <td>{task?.taskTitle}</td>
                     <td>{task?.amount}</td>
-                    <td>{task?.creatorName}</td>
-
+                    <td>{task?.workerName}</td>
+                    <td>{task?.workerEmail}</td>
+                    <td>
+                      <button className="btn" onClick={() => handleView(task)}>
+                        View
+                      </button>
+                    </td>
                     <td>
                       <button
                         onClick={() => handleApproved(task)}

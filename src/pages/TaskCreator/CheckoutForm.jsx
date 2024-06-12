@@ -9,7 +9,7 @@ import useUsersData from "../../hooks/useUsersData";
   
 
 const CheckoutForm = ({coin,dollars}) => {
- 
+//  console.log(dollars);
   const {user} = useAuth();
  
  const [userData,refetch] = useUsersData();

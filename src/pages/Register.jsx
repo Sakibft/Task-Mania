@@ -67,6 +67,7 @@ const Register = () => {
           category: category,
           coin: coin,
         };
+        // console.log(userInfo);
         axiosPublic.post("/user", userInfo).then((res) => {
           console.log(res.data);
         });

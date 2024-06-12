@@ -1,12 +1,14 @@
 import React from 'react';
 import useAxionPublic from '../../hooks/useAxionPublic';
 import { useQuery } from '@tanstack/react-query';
+import useAuth from '../../hooks/useAuth';
 
 const PaymentHistory = () => {
+  const {user} = useAuth();
 const axiosPublic = useAxionPublic();
 const {data:payment} = useQuery({
 queryFn:async()=>{
-const result = await axiosPublic.get('/payment')
+const result = await axiosPublic.get(`/payment/${user?.email}`)
  return result.data;
 },
   queryKey:['paymentData']
