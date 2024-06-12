@@ -7,7 +7,7 @@ const Dashboard = () => {
     <div>
       <DashNav></DashNav>
 
-      <div className="flex container mx-auto  min-h-[calc(100vh-320px)]  ">
+      <div className="md:flex container mx-auto  min-h-[calc(100vh-320px)]  ">
       <div>
       <SideDas></SideDas>
       </div>
