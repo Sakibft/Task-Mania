@@ -17,14 +17,14 @@ const {data:userData, refetch } = useQuery({
   queryFn:async() =>{
  
    const userData = await axiosSecure.get(`/user/${currentUser}`)
-   console.log(userData.data,'inside the useUserData');
+  //  console.log(userData.data,'inside the useUserData');
    return userData.data;
   },
   queryKey:['userData', 'user',currentUser],
   enabled:!!token && !!currentUser  
 }) 
  
- console.log(userData);
+//  console.log(userData);
   return  [userData,refetch] ;
  };
 

@@ -94,7 +94,7 @@ console.log(penDingTaskQuantity);
   return (
     <div>
       {/* Available coin */}
-     <div className="flex justify-center items-center gap-x-4 mb-5">
+     <div className="grid md:grid-cols-2   gap-x-4 mb-5">
      <div className="stat w-72 border rounded-xl">
         <div className="stat-figure ">
           <FaCoins className="text-6xl" />
@@ -130,7 +130,7 @@ console.log(penDingTaskQuantity);
           </div>
         </dialog>
       )}
-      <div className="container mx-auto border rounded-xl shadow-xl w-[1100px]">
+      <div className="container mx-auto border rounded-xl shadow-xl ">
         <div className="overflow-x-auto">
           <table className="table">
             {/* head */}

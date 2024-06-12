@@ -31,7 +31,7 @@ const AdminHome = () => {
 
   return (
     <div>
-      <div className="flex gap-x-2 justify-center mt-2 items-center">
+      <div className="grid md:grid-cols-3 gap-x-2  mt-2">
         {/* user */}
         <div className="stat w-52 border rounded-xl">
           <div className="stat-figure ">
