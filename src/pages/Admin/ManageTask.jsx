@@ -2,22 +2,26 @@ import { useQuery } from "@tanstack/react-query";
 import useAxionPublic from "../../hooks/useAxionPublic";
 import { all } from "axios";
 import { useEffect, useRef, useState } from "react";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const ManageTask = () => {
-  const axiosPublic = useAxionPublic();
+  // const axiosPublic = useAxionPublic();
+  const axiosSecure = useAxiosSecure();
   const [selectedTask, setSelectedTask] = useState(null);
   const modalRef = useRef(null);// Create a ref for the modal
   const { data: allTask, refetch } = useQuery({
     queryFn: async () => {
-      const tasks = await axiosPublic.get("/tasks");
+      const tasks = await axiosSecure.get("/tasks");
       return tasks.data;
     },
     queryKey: ["allTask"],
   });
 
   const handleDelete = (id) => {
-    axiosPublic.delete(`deleteTask/${id}`).then((res) => {
+    axiosSecure.delete(`deleteTask/${id}`)
+    .then((res) => {
       refetch();
+      console.log(res);
     });
   };
   useEffect(() => {

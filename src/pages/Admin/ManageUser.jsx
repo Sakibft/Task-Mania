@@ -1,14 +1,16 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import useAuth from "../../hooks/useAuth";
 import useAxionPublic from "../../hooks/useAxionPublic";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const ManageUser = () => {
   const { user } = useAuth();
-  const axiosPublic = useAxionPublic();
+  // const axiosPublic = useAxionPublic();
+  const axiosSecure = useAxiosSecure();
   // get all user
   const { data: allUser, refetch } = useQuery({
     queryFn: async () => {
-      const user = await axiosPublic.get("/user");
+      const user = await axiosSecure.get("/user");
       console.log(user.data);
       return user.data;
     },
@@ -16,7 +18,7 @@ const ManageUser = () => {
   });
   const {mutateAsync} = useMutation({
     mutationFn:async({id})=>{
-      const data = await axiosPublic.delete(`/user/${id}`)
+      const data = await axiosSecure.delete(`/user/${id}`)
       console.log(data);
       console.log(id);
     },

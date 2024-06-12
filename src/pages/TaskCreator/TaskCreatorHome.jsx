@@ -16,7 +16,7 @@ const TaskCreatorHome = () => {
   const status = "Pending";
   const modalRef = useRef(null); // Create a ref for the modal
 
-  const { data: submitedTask } = useQuery({
+  const { data: submitedTask = [] } = useQuery({
     queryFn: async () => {
       const submitTask = await axiosPublic.get(`/submission?status=${status}`);
       return submitTask.data;
@@ -24,6 +24,11 @@ const TaskCreatorHome = () => {
     queryKey: ["submitedTask", status],
   });
   console.log(submitedTask);
+  // pending task quantity
+  // const penDingTaskQuantity = submitedTask.reduce((sum , quantity) => sum + quantity?.quantity, 0);
+  const penDingTaskQuantity = submitedTask.reduce((sum, quantity) => sum + Number(quantity?.quantity || 0), 0);
+
+console.log(penDingTaskQuantity);
   // Approved
   const { mutateAsync } = useMutation({
     mutationFn: async ({ info }) => {
@@ -89,24 +94,23 @@ const TaskCreatorHome = () => {
   return (
     <div>
       {/* Available coin */}
-     <div>
-     <div className="stat w-52 border rounded-xl">
+     <div className="flex justify-center items-center gap-x-4 mb-5">
+     <div className="stat w-72 border rounded-xl">
         <div className="stat-figure ">
           <FaCoins className="text-6xl" />
         </div>
-        <div className="stat-title">Users</div>
-        <div className="stat-value">{userData.coin}</div>
-        <div className="stat-desc">↗︎ 400 (22%)</div>
+        <div className="stat-title">Available Coin</div>
+        <div className="stat-value">{userData?.coin}</div>
+        <div className="stat-desc"></div>
       </div>
       {/* pending */}
-     <div className="stat w-52 border rounded-xl">
+     <div className="stat w-72 border rounded-xl">
         <div className="stat-figure ">
           <MdOutlinePendingActions className="text-6xl" />
         </div>
-        <div className="stat-title">Users</div>
-        <div className="stat-value">{userData.coin}</div>
-        <div className="stat-desc">↗︎ 400 (22%)</div>
-      </div>
+        <div className="stat-title">Pending Task Quantity</div>
+        <div className="stat-value">{penDingTaskQuantity}</div>
+       </div>
       {/*  */}
      
      </div>

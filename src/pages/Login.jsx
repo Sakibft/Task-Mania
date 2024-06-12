@@ -13,17 +13,6 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState();
   const [success, setSuccess] = useState();
-  // const [googleLogin, setGoogleLogin] = useState();
-  // const [googleError, setGoogleError] = useState();
-  // loginWithGoogle
-  // if (googleLogin) {
-  //   toast.success("Successfully login with google");
-  // }
-  // if (googleError) {
-  //   toast.error(error);
-  // }
-
-  // Login
   if (error) {
     toast.error(error);
   }

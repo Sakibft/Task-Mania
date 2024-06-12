@@ -2,12 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 
 import useAxionPublic from "../../hooks/useAxionPublic";
 import { Link } from "react-router-dom";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const TaskList = () => {
-  const axiosPublic = useAxionPublic();
+  const axiosSecure = useAxiosSecure();
   const { data: allTask } = useQuery({
     queryFn: async () => {
-      const tasks = await axiosPublic.get("/tasks");
+      const tasks = await axiosSecure.get("/tasks");
 
       return tasks.data;
     },

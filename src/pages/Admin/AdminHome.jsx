@@ -32,7 +32,7 @@ const AdminHome = () => {
 
   return (
     <div>
-      <div className="flex gap-x-2">
+      <div className="flex gap-x-2 justify-center mt-2 items-center">
         {/* user */}
         <div className="stat w-52 border rounded-xl">
           <div className="stat-figure ">
@@ -40,8 +40,7 @@ const AdminHome = () => {
           </div>
           <div className="stat-title">Users</div>
           <div className="stat-value">{data?.length + 1}</div>
-          <div className="stat-desc">↗︎ 400 (22%)</div>
-        </div>
+         </div>
         {/* total Coin */}
         <div className="stat w-52 border rounded-xl">
           <div className="stat-figure ">
@@ -56,7 +55,7 @@ const AdminHome = () => {
           <div className="stat-figure ">
             <FaDollarSign className="text-6xl" />
           </div>
-          <div className="stat-title">Payment</div>
+          <div className="stat-title">Total Payment</div>
           <div className="stat-value">{totalAmount}</div>
          </div>
       </div>
