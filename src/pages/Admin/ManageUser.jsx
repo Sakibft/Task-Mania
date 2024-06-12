@@ -33,7 +33,7 @@ const ManageUser = () => {
 // sapose pailam 
     mutationFn : async({statusInfo})=>{
       console.log(statusInfo);
-    const upStatus = await axiosPublic.put(`/userStatus`,statusInfo)
+    const upStatus = await axiosSecure.put(`/userStatus`,statusInfo)
     // console.log(statusInfo); 
 console.log(upStatus.data);
     },
@@ -64,7 +64,7 @@ const handleStatus = (email,e) => {
             <table className="table">
               {/* head */}
               <thead className="text-lg text-black">
-                <tr className="border rounded-xl border-b-pink-400">
+                <tr className="border rounded-xl  ">
                   <th>Photo</th>
                   <th>Name</th>
                   <th>Email</th>
@@ -91,7 +91,7 @@ const handleStatus = (email,e) => {
                       <td>
                         <button 
                         onClick={()=>handleRemove(user?._id)}
-                        className="border flex gap-2 py-1 px-2  bg-pink-400 text-white   font-semibold rounded-md border-pink-400">
+                        className="border flex gap-2 py-1 px-2    text-black   font-semibold rounded-md  ">
                           Remove
                         </button>
 

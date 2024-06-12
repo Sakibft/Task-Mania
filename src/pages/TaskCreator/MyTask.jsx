@@ -62,7 +62,7 @@ const MyTask = () => {
             <table className="table">
               {/* head */}
               <thead className="text-lg text-black">
-                <tr className="border rounded-xl border-b-pink-400">
+                <tr className="border rounded-xl  ">
                   <th>Task Title</th>
                   <th>Task Quantity</th>
                   <th>Payable Amount</th>
@@ -78,13 +78,13 @@ const MyTask = () => {
                       <td>{task.amount}</td>
                       <td>
                         <Link to={`/dashboard/update/${task._id}`}>
-                          <button className="border flex gap-2 py-1 px-2  bg-pink-400 text-white   font-semibold rounded-md border-pink-400">
+                          <button className="border flex gap-2 py-1 px-2  text-black  font-semibold rounded-md ">
                             Update
                           </button>
                         </Link>
                         <button
                           onClick={() => handleDelete(task)}
-                          className="border flex gap-2 py-1 px-2  text-pink-400  font-semibold rounded-md border-pink-400 mt-2"
+                          className="border flex gap-2 py-1 px-2   font-semibold rounded-md border-black hover:bg-slate-300 mt-2"
                         >
                           Delete
                         </button>

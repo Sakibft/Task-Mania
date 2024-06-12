@@ -33,7 +33,7 @@ console.log(task);
             <table className="table">
               {/* head */}
               <thead className="text-lg text-black">
-                <tr className="border rounded-xl border-b-pink-400">
+                <tr className="border rounded-xl  ">
                   <th>Task Title</th>
                   <th>Payable Amount</th>
                   <th>Creator Name</th>

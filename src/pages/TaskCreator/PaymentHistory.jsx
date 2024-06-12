@@ -23,7 +23,7 @@ console.log(payment);
             <table className="table">
               {/* head */}
               <thead className="text-lg text-black">
-                <tr className="border rounded-xl border-b-pink-400">
+                <tr className="border rounded-xl ">
                   <th>Name</th>
                   <th>Email</th>
                   <th>Amount $</th>

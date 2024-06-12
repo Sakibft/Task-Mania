@@ -41,7 +41,7 @@ const ManageTask = () => {
             <table className="table">
               {/* head */}
               <thead className="text-lg text-black">
-                <tr className="border rounded-xl border-b-pink-400">
+                <tr className="border rounded-xl  ">
                   <th>CreatorName</th>
                   <th>Title</th>
                   <th>Task Quantity</th>
@@ -68,9 +68,9 @@ const ManageTask = () => {
                       <td>
                         <button
                           onClick={() => handleDelete(task?._id)}
-                          className="border flex gap-2 py-1 px-2 bg-pink-400 text-white font-semibold rounded-md border-pink-400"
+                          className="border btn flex gap-2 py-1 px-2  text-black font-semibold rounded-md  "
                         >
-                          Remove
+                          Delete
                         </button>
                       </td>
                     </tr>

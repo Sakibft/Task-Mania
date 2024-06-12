@@ -101,8 +101,8 @@ useEffect(()=>{
     }
   }
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="w-full flex justify-center items-center  border">
+      <form onSubmit={handleSubmit} className="w-1/2 border rounded-xl mt-5 pt-5">
       <CardElement
         options={{
           style: {
@@ -121,10 +121,10 @@ useEffect(()=>{
       />
       <button 
       disabled={!stripe || !clientSecrete}
-       className="btn btn-primary my-4 btn-sm" type="submit"  >
+       className="btn  border border-black my-4 " type="submit"  >
         Pay
       </button>
-      <p className="text-red-300">{error}</p>
+      <p className="text-red-400">{error}</p>
       {
         transactionId && <p className="text-green-400">Your transaction id : {transactionId}</p>
       }

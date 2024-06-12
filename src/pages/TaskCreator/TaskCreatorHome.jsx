@@ -135,7 +135,7 @@ console.log(penDingTaskQuantity);
           <table className="table">
             {/* head */}
             <thead className="text-lg text-black">
-              <tr className="border rounded-xl border-b-pink-400">
+              <tr className="border rounded-xl  ">
                 <th>Task Title</th>
                 <th>Payable Amount</th>
                 <th>Worker Name</th>
@@ -161,14 +161,14 @@ console.log(penDingTaskQuantity);
                     <td>
                       <button
                         onClick={() => handleApproved(task)}
-                        className="border flex gap-2 py-1 px-2  bg-pink-400 text-white   font-semibold rounded-md border-pink-400"
+                        className="border flex gap-2 py-1 px-2    text-black btn   font-semibold rounded-md  "
                       >
                         Approved
                       </button>
 
                       <button
                         onClick={() => handleReject(task?.taskId)}
-                        className="border flex gap-2 py-1 px-2  text-pink-400  font-semibold rounded-md border-pink-400 mt-2"
+                        className="border flex gap-2 py-1 px-2   font-semibold rounded-md   mt-2"
                       >
                         Reject
                       </button>

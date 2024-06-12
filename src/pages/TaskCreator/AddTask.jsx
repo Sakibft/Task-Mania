@@ -70,7 +70,7 @@ const AddTask = () => {
                   Task Title
                 </label>
                 <input
-                className="w-full px-4 py-3 rounded-md   border border-pink-400    "
+                className="w-full px-4 py-3 rounded-md   border      "
                   placeholder="Enter task title "
                   type="text"
                   name="title"
@@ -79,7 +79,7 @@ const AddTask = () => {
                   Task Detail
                 </label>
                 <input
-                 className="w-full px-4 py-3 rounded-md   border border-pink-400    "
+                 className="w-full px-4 py-3 rounded-md   border     "
                   placeholder="Enter task detail"
                   type="text"
                   name="detail"
@@ -88,7 +88,7 @@ const AddTask = () => {
                    Task Quantity
                 </label>
                 <input
-                  className="w-full px-4 py-3 rounded-md   border border-pink-400    "
+                  className="w-full px-4 py-3 rounded-md   border      "
                   placeholder="Enter quantity"
                   type="number"
                   name="quantity"
@@ -104,7 +104,7 @@ const AddTask = () => {
                   Completion Date
                 </label>
                 <input
-                 className="w-full px-4 py-3 rounded-md   border border-pink-400    "
+                 className="w-full px-4 py-3 rounded-md   border     "
                   placeholder="Enter date"
                   type="text"
                   name="date"
@@ -113,7 +113,7 @@ const AddTask = () => {
                    Submission Info
                 </label>
                 <input
-                 className="w-full px-4 py-3 rounded-md   border border-pink-400    "
+                 className="w-full px-4 py-3 rounded-md   border      "
                   placeholder="Enter submission"
                   type="text"
                   name="submission"
@@ -122,7 +122,7 @@ const AddTask = () => {
               Task Image Url
                 </label>
                 <input
-                className="w-full px-4 py-3 rounded-md   border border-pink-400    "
+                className="w-full px-4 py-3 rounded-md   border      "
                   placeholder="Enter photo URL"
                   type="text"
                   name="image"
@@ -137,14 +137,14 @@ const AddTask = () => {
               Payable Amount
             </label>
             <input
-            className="w-full px-4 py-3 rounded-md   border border-pink-400    "
+            className="w-full px-4 py-3 rounded-md   border     "
               type="number"
               placeholder="Enter Payable amount"
               name="amount"
             />
 
             <input
-              className="w-full px-3 py-2  mt-2 btn rancho text-xl border   bg-pink-400 text-white"
+              className="w-full px-3 py-2  mt-2 btn rancho text-xl border     text-black  border-black"
               type="submit"
               value="Add Task"
             />
