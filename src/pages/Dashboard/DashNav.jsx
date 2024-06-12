@@ -5,7 +5,7 @@ import useUsersData from "../../hooks/useUsersData";
 const DashNav = () => {
   const { user } = useContext(AuthenticationContext);
   const [userData] = useUsersData();
- 
+//  console.log(userData);
   const coin = userData?.coin;
   const category = userData?.category;
   return (
@@ -19,8 +19,8 @@ const DashNav = () => {
 
         <div className="navbar-end relative border space-x-5 ">
           <div>
-            <h1>{coin}</h1>
-            <h1>{category}</h1>
+            <h1>coin:{coin}</h1>
+            <h1>category:{category}</h1>
           </div>
           <div className="flex flex-col justify-center items-center ">
             <div className="avatar">

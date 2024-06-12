@@ -3,8 +3,8 @@ import useAxionPublic from "../../hooks/useAxionPublic";
 import { AuthenticationContext } from "../../providers/ContextComponent";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { Link, Navigate } from "react-router-dom";
-
+import { Link } from "react-router-dom";
+ 
 const MyTask = () => {
   const { user } = useContext(AuthenticationContext);
   const axiosPublic = useAxionPublic();
@@ -20,10 +20,16 @@ const MyTask = () => {
   };
   // delete task
   const { mutateAsync } = useMutation({
-    mutationFn: async (id) => {
-      const { data } = await axiosPublic.delete(`/task/${id}`);
+    mutationFn: async (info) => {
+      console.log(info?.id);
+      const { data } = await axiosPublic.delete(`/task/${info?.id}`);
       refetch();
       console.log(data);
+      axiosPublic.put('/user',info)
+      .then(res => {
+        console.log(res.data,'after delete task increase coin ');
+        refetch();
+      })
       toast.error("Delete task ");
     },
     onSuccess: () => {
@@ -32,15 +38,21 @@ const MyTask = () => {
   });
 
   // delete task
-  const handleDelete = (id) => {
-    mutateAsync(id);
-    // console.log(id);
+  const handleDelete = (task) => {
+    const amount = task?.amount;
+    const quantity = task?.quantity;
+    const id = task?._id;
+    const email = task?.email;
+    const multiply = amount * quantity;
+    const upInfo = {
+      id: id,
+      email: email,
+      coin: multiply,
+    };
+    mutateAsync(upInfo);
+    // console.log(upInfo);
   };
-  // update task
-  const handleUpdate = (id) => {
-    console.log(id);
-  };
-
+  
   return (
     <div>
       <div className="w-full flex flex-col justify-center items-center ">
@@ -65,16 +77,13 @@ const MyTask = () => {
                       <td>{task.quantity}</td>
                       <td>{task.amount}</td>
                       <td>
-                       <Link to={`/dashboard/update/${task._id}`}>
-
+                        <Link to={`/dashboard/update/${task._id}`}>
+                          <button className="border flex gap-2 py-1 px-2  bg-pink-400 text-white   font-semibold rounded-md border-pink-400">
+                            Update
+                          </button>
+                        </Link>
                         <button
-                          className="border flex gap-2 py-1 px-2  bg-pink-400 text-white   font-semibold rounded-md border-pink-400"
-                        >
-                          Update
-                        </button>
-                       </Link>
-                        <button
-                          onClick={() => handleDelete(task._id)}
+                          onClick={() => handleDelete(task)}
                           className="border flex gap-2 py-1 px-2  text-pink-400  font-semibold rounded-md border-pink-400 mt-2"
                         >
                           Delete

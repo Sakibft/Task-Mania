@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
  
 
 const AddTask = () => {
-  const userData = useUsersData();
+  const [userData,refetch] = useUsersData();
   const axiosPublic = useAxionPublic();
   const {user} = useContext(AuthenticationContext)
   const handleAddTask = e => {
@@ -22,8 +22,10 @@ const AddTask = () => {
     const image = form.image.value;
     const email = user?.email;
     const  name = user?.displayName;
-     
-    if(quantity * amount > userData.coin ){
+     console.log(quantity*amount);
+     const into = quantity * amount ;
+     const coin = userData?.coin;
+    if(into > coin ){
        alert('Not available Coin. Purchase Coin')
        return;
     }
@@ -36,6 +38,16 @@ const AddTask = () => {
     axiosPublic.post('/task',taskInfo)
     .then(res =>{
       console.log(res.data,'inside the add component');
+      const upCoin = {
+        coin : into,
+        email:user?.email
+  
+       }
+      axiosPublic.put('/decreaseUserCoin',upCoin)
+      .then(res => {
+        console.log(res.data);
+        refetch();
+      })
       toast.success('Successfully toasted!')
     })
     .catch(error =>{

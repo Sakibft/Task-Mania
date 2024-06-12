@@ -1,33 +1,7 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthenticationContext } from "../../providers/ContextComponent";
 import { NavLink } from "react-router-dom";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
-
- 
- 
+import useUsersData from "../../hooks/useUsersData";
  const SideDas = () => {
-  const { user } = useContext(AuthenticationContext);
-  // const axiosPublic = useAxionPublic();
-  const axiosSecure = useAxiosSecure();
-  const [userData, setUserData] = useState();
-  const currentUser = user?.email;
-  useEffect(() => {
-    if (currentUser) {
-      axiosSecure
-        .get(`/user/${currentUser}`,{
-          headers:{
-            Authorization:`Bearer ${localStorage.getItem('access-token')}`
-          }
-        })
-        .then((res) => {
-          setUserData(res.data);
-          // console.log(res.data, "nav e data ");
-        })
-        .catch((error) => {
-          console.error("Error fetching user data:", error);
-        });
-    }
-  }, [currentUser,axiosSecure]);
+  const [userData] = useUsersData();
   return (
     <div>
        {/* dashboard */}
@@ -78,7 +52,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
             userData?.category === "Admin" && (
               <>
                <li>
-                <NavLink to="/">Home</NavLink>
+                <NavLink to="/dashboard/adminHome">Home</NavLink>
               </li>
                <li>
                 <NavLink to="/dashboard/mangeUsers">Mange Users</NavLink>

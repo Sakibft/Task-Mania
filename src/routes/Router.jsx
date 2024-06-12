@@ -19,6 +19,8 @@ import TaskCreatorHome from "../pages/TaskCreator/TaskCreatorHome";
 import ManageUser from "../pages/Admin/ManageUser";
 import ManageTask from "../pages/Admin/ManageTask";
 import Private from "./Private";
+import Withdrawals from "../pages/Worker/Withdrawals";
+import AdminHome from "../pages/Admin/AdminHome";
 
 const router = createBrowserRouter([
   {
@@ -91,7 +93,16 @@ const router = createBrowserRouter([
         path: "submission",
         element: <WorkerSubmit></WorkerSubmit>,
       },
+      {
+        path:'withdrawals',
+        element:<Withdrawals></Withdrawals>
+      },
       // for Admin
+
+      {
+        path:'adminHome',
+        element:<AdminHome></AdminHome>
+      },
       {
         path:'mangeUsers',
         element:<ManageUser></ManageUser>
