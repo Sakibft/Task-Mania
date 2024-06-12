@@ -68,7 +68,7 @@ const Login = () => {
       <div
         data-aos="fade-up"
         data-aos-duration="1000"
-        className="container mx-auto flex  h-[700px] items-center justify-center mb-10 mt-4 border-2 hover:border-primary duration-2000   rounded-2xl shadow-xl "
+        className="container mx-auto flex  h-[700px] items-center justify-center mb-10 mt-4  duration-2000   rounded-2xl shadow-xl "
       >
         <div className=" w-full overflow-hidden rounded-xl   flex justify-center items-center   lg:h-[80%] ">
           {/* input side  */}
@@ -76,7 +76,7 @@ const Login = () => {
             <h2
               data-aos="fade-up"
               data-aos-duration="2000"
-              className="pb-8 text-center text-3xl font-bold text-primary"
+              className="pb-8 text-center text-3xl font-bold text-black"
             >
               Login Now !
             </h2>
@@ -85,12 +85,12 @@ const Login = () => {
               className="flex  w-full flex-col items-center justify-center gap-4"
             >
               <input
-                className="w-[80%] rounded-lg border border-primary px-6 py-2 focus:outline-none focus:ring-2 focus:ring-[#8EA7E9]/50 md:w-[60%]"
+                className="w-[80%] rounded-lg border border-black px-6 py-2 focus:outline-none focus:ring-2  md:w-[60%]"
                 type="email"
                 placeholder="Email"
                 name="email"
               />
-              <div className="w-[80%] rounded-lg border border-primary px-6 py-2 focus:outline-none focus:ring-2 focus:ring-[#8EA7E9]/50 md:w-[60%] flex justify-between">
+              <div className="w-[80%] rounded-lg border border-black px-6 py-2 focus:outline-none focus:ring-2 focus:ring-[#8EA7E9]/50 md:w-[60%] flex justify-between">
                 <input
                   type={showPassword ? "text" : "password"}
                   placeholder="Password"
@@ -118,22 +118,16 @@ const Login = () => {
 
               <p className="text-[14px] text-gray-400">
                 Do not have an account ?
-                <Link to="/register" className="text-primary underline ml-1  ">
+                <Link to="/register" className="text-black underline ml-1  ">
                   Register
                 </Link>
               </p>
 
-              <button className="btn w-[80%] rounded-lg bg-primary px-6 py-2 font-medium text-white md:w-[60%] text-xl">
+              <button className="btn w-[80%] rounded-lg border-black px-6 py-2 font-medium text-black md:w-[60%] text-xl">
                 Login
               </button>
             </form>
-            {/* <div className="flex items-center pt-4 space-x-2">
-              <div className="flex-1 h-px bg-gray-300"></div>
-              <p className="text-sm text-[#8EA7E9]">
-                Login with social accounts
-              </p>
-              <div className="flex-1 h-px bg-gray-300"></div>
-            </div> */}
+          
             {/* divider  */}
             <div className="my-8 flex items-center px-8">
               <hr className="flex-1" />
@@ -146,11 +140,11 @@ const Login = () => {
               onClick={handleGoogle}
               className="mx-auto flex h-[50px] w-[200px] items-center overflow-hidden rounded-full shadow-md duration-300 hover:scale-95 hover:shadow"
             >
-              <div className="flex h-full w-[50%] items-center bg-primary pl-4 text-sm text-white">
+              <div className="flex h-full w-[50%] items-center bg-gray-300 pl-4 text-sm text-white">
                 Sign With
               </div>
-              <span className="right-0 top-0 h-0 w-0 -rotate-90 border-b-[50px] border-r-[50px] border-b-transparent border-r-primary group-hover:hidden"></span>
-              <span className="pr-4 text-4xl font-bold text-primary">G+</span>
+              <span className="right-0 top-0 h-0 w-0 -rotate-90 border-b-[50px] border-r-[50px] border-b-transparent border-r-gray-300 group-hover:hidden"></span>
+              <span className="pr-4 text-4xl bg-gray-50 font-bold text-black">G+</span>
             </div>
           </div>
         </div>

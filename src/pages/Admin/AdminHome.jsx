@@ -1,8 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
-import { FaCoins, FaDollarSign, FaUsers } from "react-icons/fa";
-import { useState } from "react";
+import {FaCoins, FaDollarSign, FaUsers } from "react-icons/fa";
 
 const AdminHome = () => {
   const axiosSecure = useAxiosSecure();

@@ -45,7 +45,7 @@ const Withdrawals = () => {
                     Coin To Withdraw:
                     </label>
                     <input
-                    className="w-1/2 px-4 py-3 rounded-md   border border-pink-400  "
+                    className="w-1/2 px-4 py-3 rounded-md   border  "
                         type="number"
                         value={withdrawCoins}
                         onChange={(e) => setWithdrawCoins(Number(e.target.value))}
@@ -56,7 +56,7 @@ const Withdrawals = () => {
                     Withdraw Amount (in dollars):
                     </label>
                     <input
-                    className="w-1/2 px-4 py-3 rounded-md   border border-pink-400  "
+                    className="w-1/2 px-4 py-3 rounded-md   border  "
                         type="number"
                         value={withdrawAmount}
                         readOnly
@@ -67,7 +67,7 @@ const Withdrawals = () => {
                     Select Payment System:
                     </label>
                     <select
-                     className="w-1/2 px-4 py-3 rounded-md   border border-pink-400  "
+                     className="w-1/2 px-4 py-3 rounded-md   border  "
                     value={paymentSystem} onChange={(e) => setPaymentSystem(e.target.value)}>
                         <option value="">Select</option>
                         <option value="Bkash">Bkash</option>
@@ -80,7 +80,7 @@ const Withdrawals = () => {
                     Account Number:
                     </label>
                     <input
-                     className="w-1/2 px-4 py-3 rounded-md   border border-pink-400  "
+                     className="w-1/2 px-4 py-3 rounded-md   border  "
                         type="text"
                         value={accountNumber}
                         onChange={(e) => setAccountNumber(e.target.value)}
@@ -88,7 +88,7 @@ const Withdrawals = () => {
                 
             </div>
               
-                <button className="btn bg-pink-300" type="submit">Withdraw</button>
+                <button className="btn " type="submit">Withdraw</button>
             </form>
        
         </div>

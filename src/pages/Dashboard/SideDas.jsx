@@ -67,7 +67,7 @@ const SideDas = () => {
       </ul>
     </div>
       {/* lg nav */}
-      <div className="w-64  bg-green-100">
+      <div className="w-64 bg-gray-200">
         <ul className="menu hidden md:flex">
           {/* worker */}
           {userData?.category === "Worker" && (

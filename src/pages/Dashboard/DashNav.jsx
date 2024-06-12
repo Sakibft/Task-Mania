@@ -12,7 +12,7 @@ const DashNav = () => {
   return (
     <div className="container mx-auto">
       {/* nav */}
-      <div className="navbar bg-base-100 border">
+      <div className="navbar bg-base-100 ">
         <div className="navbar-start">
           <Link to='/' className="btn btn-ghost text-xl">
           <img src={money} className="w-12" alt="" />
@@ -20,7 +20,7 @@ const DashNav = () => {
         </div>
         {/* <div className="navbar-center hidden md"></div> */}
 
-        <div className="navbar-end relative border space-x-5 ">
+        <div className="navbar-end relative  space-x-5 ">
           <div>
             <h1 className="mb-2">Available Coin : {coin}</h1>
             <h1>category : {category}</h1>

@@ -80,7 +80,7 @@ const Register = () => {
   return (
     <div>
       <div className="  container w-1/2 p-8 space-y-3 rounded-xl border bg-white   font-sans mx-auto">
-        <h1 className="text-3xl font-bold text-center text-indigo-600">
+        <h1 className="text-3xl font-bold text-center black">
           Register
         </h1>
         {/* Input fields and the form started */}
@@ -93,7 +93,7 @@ const Register = () => {
               type="text"
               name="name"
               placeholder="Username"
-              className="w-full px-4 py-3 rounded-md border border-indigo-300 focus:outline-none focus:ring  "
+              className="w-full px-4 py-3 rounded-md border  focus:outline-none focus:border-black "
             />
           </div>
           <div className="space-y-2 text-sm">
@@ -104,7 +104,7 @@ const Register = () => {
               type="email"
               name="email"
               placeholder="email"
-              className="w-full px-4 py-3 rounded-md border border-indigo-300 focus:outline-none focus:ring  "
+              className="w-full px-4 py-3 rounded-md border  focus:outline-none focus:border-black "
             />
           </div>
           <div className="space-y-2 text-sm">
@@ -116,7 +116,7 @@ const Register = () => {
               name="password"
               id="password"
               placeholder="Password"
-              className="w-full px-4 py-3 rounded-md border border-indigo-300 focus:outline-none focus:ring  "
+              className="w-full px-4 py-3 rounded-md border focus:outline-none focus:border-black  "
             />
             <label htmlFor="password" className="block ">
               Photo URL
@@ -125,12 +125,12 @@ const Register = () => {
               type="text"
               name="photo"
               placeholder="photo"
-              className="w-full px-4 py-3 rounded-md border border-indigo-300 focus:outline-none focus:ring  "
+              className="w-full px-4 py-3 rounded-md border focus:outline-none focus:border-black   "
             />
             <select
               name="category"
-              className="p-4 rounded-lg border-l border-r border-primary shadow-blue-200 shadow-lg 
-              focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300"
+              className="p-4 rounded-lg border-l  shadow-lg 
+              focus-within:ring "
             >
               <option>Select a role</option>
               <option value="Worker">Worker</option>
@@ -143,8 +143,8 @@ const Register = () => {
             </div>
           </div>
           {/* Sign in Button */}
-          <button className="text-lg rounded-xl relative p-[10px] block w-full bg-indigo-600 text-white border-y-4 duration-500 overflow-hidden focus:border-indigo-500 z-50 group">
-            Log In
+          <button className="text-lg rounded-xl relative p-[10px] block w-full  text-black border-y-4 duration-500 overflow-hidden   z-50 group">
+            Register
             <span className="absolute opacity-0 group-hover:opacity-100 duration-100 group-hover:duration-1000 ease-out flex justify-center inset-0 items-center z-10 text-white">
               Let&apos;s go
             </span>
