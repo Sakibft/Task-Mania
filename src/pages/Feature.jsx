@@ -31,7 +31,7 @@ const Feature = () => {
               <img className="w-20" src={clipboard} alt="" />
               <div>
                 <h1 className="font-bold">Create Tasks</h1>
-                <p>Complete simple tasks and earn coins for your efforts.</p>
+                <p> Easily create and manage tasks with detailed instructions, deadlines, and reward amounts.</p>
               </div>
             </div>
           </div>
