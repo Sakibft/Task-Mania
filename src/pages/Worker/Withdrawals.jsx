@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import CheckoutForm from "../TaskCreator/CheckoutForm";
 
  
 
@@ -36,8 +37,7 @@ const Withdrawals = () => {
             <h2>Withdrawals</h2>
             <p>Maximum Withdrawal Amount: ${coins / 20}</p>
            
-
-              
+               
             <form onSubmit={(e) => { e.preventDefault(); handleWithdraw(); }}>
             <div className="flex flex-col space-y-1 mb-4">
 

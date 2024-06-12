@@ -1,12 +1,16 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { MdOutlinePendingActions } from "react-icons/md";
 
 import useAxionPublic from "../../hooks/useAxionPublic";
 import useAuth from "../../hooks/useAuth";
 import { updateCurrentUser } from "firebase/auth";
 import { useEffect, useRef, useState } from "react";
+import { FaCoins, FaDollarSign, FaOldRepublic, FaOpenid, FaPhoenixSquadron, FaUsers } from "react-icons/fa";
+import useUsersData from "../../hooks/useUsersData";
 
 const TaskCreatorHome = () => {
   const axiosPublic = useAxionPublic();
+  const [userData] = useUsersData();
   const [selectedTask, setSelectedTask] = useState(null);
   const { user } = useAuth();
   const status = "Pending";
@@ -80,8 +84,33 @@ const TaskCreatorHome = () => {
     console.log(task);
     setSelectedTask(task);
   };
+  // user data for coin
+  console.log(userData);
   return (
     <div>
+      {/* Available coin */}
+     <div>
+     <div className="stat w-52 border rounded-xl">
+        <div className="stat-figure ">
+          <FaCoins className="text-6xl" />
+        </div>
+        <div className="stat-title">Users</div>
+        <div className="stat-value">{userData.coin}</div>
+        <div className="stat-desc">↗︎ 400 (22%)</div>
+      </div>
+      {/* pending */}
+     <div className="stat w-52 border rounded-xl">
+        <div className="stat-figure ">
+          <MdOutlinePendingActions className="text-6xl" />
+        </div>
+        <div className="stat-title">Users</div>
+        <div className="stat-value">{userData.coin}</div>
+        <div className="stat-desc">↗︎ 400 (22%)</div>
+      </div>
+      {/*  */}
+     
+     </div>
+
       {selectedTask && (
         <dialog id="my_modal_2" className="modal" ref={modalRef}>
           <div className="modal-box">

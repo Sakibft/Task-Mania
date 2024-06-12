@@ -21,13 +21,13 @@ console.log(task);
     queryKey:['submetedTask', user ]
   })
    
-
+ console.log(submitedTask);
   
  
   return (
     <div>
       <div className="container mx-auto border rounded-xl shadow-xl w-[1100px]">
-
+         <button className="btn">Total Submission : { submitedTask?.length}</button>
         
           <div className="overflow-x-auto">
             <table className="table">

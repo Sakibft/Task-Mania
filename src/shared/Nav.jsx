@@ -63,12 +63,12 @@ const Nav = () => {
         ) : (
           // not logged in user
           <ul className="hidden items-center justify-between gap-10 md:flex">
-            <NavLink to="/">
+        
               <li className="group flex  cursor-pointer flex-col">
-                Watch demo
+              <a href="https://www.youtube.com/watch?v=EaGBd4proc4" target="_blank">  Watch demo</a>
                 <span className="mt-[2px] h-[3px]  w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
               </li>
-            </NavLink>
+        
             <NavLink to="/login">
               <li className="group flex  cursor-pointer flex-col">
                 Login

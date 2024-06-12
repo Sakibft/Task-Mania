@@ -11,7 +11,7 @@ const Dashboard = () => {
       <div>
       <SideDas></SideDas>
       </div>
-        <div className="flex-1 border border-red-500 ">
+        <div className="flex-1  ">
           <Outlet></Outlet>
         </div> 
       </div>

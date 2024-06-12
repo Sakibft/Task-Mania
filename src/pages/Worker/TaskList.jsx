@@ -15,7 +15,7 @@ const TaskList = () => {
   });
   console.log(allTask);
   return (
-    <div className="flex border border-black m-2 justify-center items-center">
+    <div className="flex border  m-2 justify-center items-center">
       <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-5 ">
         {allTask &&
           allTask.map((task) => (
